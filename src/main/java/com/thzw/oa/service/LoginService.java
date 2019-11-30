@@ -1,6 +1,7 @@
 package com.thzw.oa.service;
 
 import com.thzw.oa.entity.userbaseinfo;
+
 import com.thzw.oa.mapper.userbaseinfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class LoginService {
         }else{
             System.out.println("sererror");
         }
-        user= userMapper.selectByPhone(user);
+        // user= userMapper.selectByPhone(user);
         return user;
     }
 }

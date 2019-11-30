@@ -42,7 +42,7 @@
             <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
             </span>
             </label>
-          <button class="btn btn-theme btn-block" onclick="login()"><i class="fa fa-lock"></i> SIGN IN</button>
+          <input type="button" class="btn btn-theme btn-block" onclick="login()">sadasdads</input>
           <hr>
           <div class="login-social-link centered">
             <p>or you can sign in via your social network</p>
@@ -73,30 +73,33 @@
     });
   </script>
 
-
   <script type="text/javascript">
-    function login() {
-      $.ajax({
-        url: '/tologin',
-        type: 'get',
-        dataType: 'json',
-        data: {"phone": $('#phone').val(), "pwd": $('#pwd').val()},
-        success: function (d) {
-          if (d === "success") {
-            window.location.href = 'index.html';
-          } else {
-            window.location.href = 'error.html';
-          }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-          alert(XMLHttpRequest.status); // 200
-          alert(textStatus); // parsererror
-          alert(errorThrown); // SyntaxError: Unexpected end of input
-        }
-      })
-    }
-  </script>
 
+      function login() {
+       alert( $('#phone').val());
+      alert($('#pwd').val());
+       $.ajax({
+                    type: "POST"
+                    , url: "/Login/tologin"
+                    , data: {
+                        phone:$('#phone').val()
+                        ,pwd:$('#pwd').val()
+                    }
+                    , success: function (ret) {
+
+                    },
+                    error:function () {
+
+                    }
+                })
+                return false;
+            });
+    }
+</script>
+
+<script>
+
+</script>
 </body>
 
 </html>
