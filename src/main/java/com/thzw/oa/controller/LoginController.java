@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 //@RequestMapping(value = "/Login")
@@ -21,6 +22,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/tologin")
+    @ResponseBody
     public String toLogin(String phone,String pwd){
         System.out.println("222222222222222");
         userbaseinfo user = loginService.toLogin(phone,pwd);
