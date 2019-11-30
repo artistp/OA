@@ -8,3 +8,4 @@ public interface MissionS {
 
     public List<find_members_by_adminid> getmates(long id);
 }
+//

@@ -14,3 +14,4 @@ public interface AdminimS {
 
     public int missionToUser(adminiminfo inf, List<find_members_by_adminid> findM);
 }
+//

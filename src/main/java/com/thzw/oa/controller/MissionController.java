@@ -84,7 +84,7 @@ public class MissionController {
         test.setUserid((long)6);
         Byte imtype = 0b01;
         test.setImtype(imtype);
-
+//
 
 
         long id = 6; //logineduser.getAccreditedvillageid();
