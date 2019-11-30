@@ -1,7 +1,9 @@
 package com.thzw.oa.mapper;
 
 import com.thzw.oa.entity.accreditedvillageinfo;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface accreditedvillageinfoMapper {
     int deleteByPrimaryKey(Integer accreditedvillageid);
 

@@ -1,7 +1,9 @@
 package com.thzw.oa.mapper;
 
 import com.thzw.oa.entity.adminiminfo;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface adminiminfoMapper {
     int deleteByPrimaryKey(Integer imid);
 

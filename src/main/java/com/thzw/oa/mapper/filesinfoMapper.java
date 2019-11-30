@@ -1,7 +1,9 @@
 package com.thzw.oa.mapper;
 
 import com.thzw.oa.entity.filesinfo;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface filesinfoMapper {
     int deleteByPrimaryKey(Integer fileid);
 

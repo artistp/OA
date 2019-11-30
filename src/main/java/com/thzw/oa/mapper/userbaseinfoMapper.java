@@ -1,7 +1,9 @@
 package com.thzw.oa.mapper;
 
 import com.thzw.oa.entity.userbaseinfo;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface userbaseinfoMapper {
     int deleteByPrimaryKey(Long userid);
 

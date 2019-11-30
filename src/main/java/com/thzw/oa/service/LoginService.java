@@ -7,21 +7,21 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class LoginService {
-    @Autowired(required = false)
+public class LoginService{
+    @Autowired
     private userbaseinfoMapper userMapper;
 
     public userbaseinfo toLogin(String username, String password){
-        System.out.println("service");
         userbaseinfo user=new userbaseinfo();
         user.setPhone(username);
         user.setPwd(password);
-        if (user!=null){
-            System.out.println("sersuccess");
-        }else{
-            System.out.println("sererror");
-        }
-        user= userMapper.selectByPhone(user);
+        user = userMapper.selectByPhone(user);
+//        if (user!=null){
+//            System.out.println("sersuccess");
+//            System.out.println(user.getName());
+//        }else{
+//            System.out.println("sererror");
+//        }
         return user;
     }
 }

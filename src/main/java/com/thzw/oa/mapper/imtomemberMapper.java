@@ -1,7 +1,9 @@
 package com.thzw.oa.mapper;
 
 import com.thzw.oa.entity.imtomember;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface imtomemberMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -1,7 +1,9 @@
 package com.thzw.oa.mapper;
 
 import com.thzw.oa.entity.imfilemapinfo;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface imfilemapinfoMapper {
     int deleteByPrimaryKey(Integer id);
 

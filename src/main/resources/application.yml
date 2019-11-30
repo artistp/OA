@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     name: OA
-    url: jdbc:mysql://104.207.142.224:3306/OA
+    url: jdbc:mysql://104.207.142.224:3306/OA?zeroDateTimeBehavior=convertToNull
     username: team
     password: Team@123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,8 +15,8 @@ spring:
       content-type: text/html
     cache: false
 
-
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.thzw.thethzw.entity
 
+spring.mvc.static-path-pattern: /static/**
