@@ -12,12 +12,100 @@
   <resultMap id="ResultMapWithBLOBs" type="com.thzw.oa.entity.adminiminfo" extends="BaseResultMap" >
     <result column="IMContent" property="imcontent" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List" >
     IMID, Title, STime, ETime, UserID, IMType
   </sql>
   <sql id="Blob_Column_List" >
     IMContent
   </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.thzw.oa.entity.adminiminfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from adminiminfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.thzw.oa.entity.adminiminfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from adminiminfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -29,6 +117,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from adminiminfo
     where IMID = #{imid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.thzw.oa.entity.adminiminfoExample" >
+    delete from adminiminfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.thzw.oa.entity.adminiminfo" >
     insert into adminiminfo (IMID, Title, STime, 
@@ -87,6 +181,66 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.thzw.oa.entity.adminiminfoExample" resultType="java.lang.Integer" >
+    select count(*) from adminiminfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update adminiminfo
+    <set >
+      <if test="record.imid != null" >
+        IMID = #{record.imid,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        Title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stime != null" >
+        STime = #{record.stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.etime != null" >
+        ETime = #{record.etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.imtype != null" >
+        IMType = #{record.imtype,jdbcType=TINYINT},
+      </if>
+      <if test="record.imcontent != null" >
+        IMContent = #{record.imcontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update adminiminfo
+    set IMID = #{record.imid,jdbcType=INTEGER},
+      Title = #{record.title,jdbcType=VARCHAR},
+      STime = #{record.stime,jdbcType=TIMESTAMP},
+      ETime = #{record.etime,jdbcType=TIMESTAMP},
+      UserID = #{record.userid,jdbcType=BIGINT},
+      IMType = #{record.imtype,jdbcType=TINYINT},
+      IMContent = #{record.imcontent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update adminiminfo
+    set IMID = #{record.imid,jdbcType=INTEGER},
+      Title = #{record.title,jdbcType=VARCHAR},
+      STime = #{record.stime,jdbcType=TIMESTAMP},
+      ETime = #{record.etime,jdbcType=TIMESTAMP},
+      UserID = #{record.userid,jdbcType=BIGINT},
+      IMType = #{record.imtype,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.adminiminfo" >
     update adminiminfo
     <set >

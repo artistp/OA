@@ -6,9 +6,81 @@
     <result column="AccreditedCountryID" property="accreditedcountryid" jdbcType="INTEGER" />
     <result column="AccreditedTownName" property="accreditedtownname" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List" >
     AccreditedTownID, AccreditedCountryID, AccreditedTownName
   </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.thzw.oa.entity.accreditedtowninfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from accreditedtowninfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -18,6 +90,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from accreditedtowninfo
     where AccreditedTownID = #{accreditedtownid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.thzw.oa.entity.accreditedtowninfoExample" >
+    delete from accreditedtowninfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.thzw.oa.entity.accreditedtowninfo" >
     insert into accreditedtowninfo (AccreditedTownID, AccreditedCountryID, 
@@ -50,6 +128,38 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.thzw.oa.entity.accreditedtowninfoExample" resultType="java.lang.Integer" >
+    select count(*) from accreditedtowninfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update accreditedtowninfo
+    <set >
+      <if test="record.accreditedtownid != null" >
+        AccreditedTownID = #{record.accreditedtownid,jdbcType=INTEGER},
+      </if>
+      <if test="record.accreditedcountryid != null" >
+        AccreditedCountryID = #{record.accreditedcountryid,jdbcType=INTEGER},
+      </if>
+      <if test="record.accreditedtownname != null" >
+        AccreditedTownName = #{record.accreditedtownname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update accreditedtowninfo
+    set AccreditedTownID = #{record.accreditedtownid,jdbcType=INTEGER},
+      AccreditedCountryID = #{record.accreditedcountryid,jdbcType=INTEGER},
+      AccreditedTownName = #{record.accreditedtownname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.accreditedtowninfo" >
     update accreditedtowninfo
     <set >

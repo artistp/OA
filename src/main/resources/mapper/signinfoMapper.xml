@@ -8,9 +8,81 @@
     <result column="Latitude" property="latitude" jdbcType="VARCHAR" />
     <result column="Longitude" property="longitude" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List" >
     SignID, UserID, SignDateTime, Latitude, Longitude
   </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.thzw.oa.entity.signinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from signinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -20,6 +92,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from signinfo
     where SignID = #{signid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.thzw.oa.entity.signinfoExample" >
+    delete from signinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.thzw.oa.entity.signinfo" >
     insert into signinfo (SignID, UserID, SignDateTime, 
@@ -64,6 +142,46 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.thzw.oa.entity.signinfoExample" resultType="java.lang.Integer" >
+    select count(*) from signinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update signinfo
+    <set >
+      <if test="record.signid != null" >
+        SignID = #{record.signid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.signdatetime != null" >
+        SignDateTime = #{record.signdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.latitude != null" >
+        Latitude = #{record.latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        Longitude = #{record.longitude,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update signinfo
+    set SignID = #{record.signid,jdbcType=INTEGER},
+      UserID = #{record.userid,jdbcType=BIGINT},
+      SignDateTime = #{record.signdatetime,jdbcType=TIMESTAMP},
+      Latitude = #{record.latitude,jdbcType=VARCHAR},
+      Longitude = #{record.longitude,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.signinfo" >
     update signinfo
     <set >
