@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
     @Autowired
@@ -23,12 +26,13 @@ public class LoginController {
         return "/index.html";
     }
 
-    @RequestMapping(value = "/tologin")
     @ResponseBody
-    public String toLogin(String phone,String pwd){
+    @RequestMapping(value = "/tologin")
+    public String toLogin(String phone,String pwd,HttpSession session){
         System.out.println(phone);
         System.out.println(pwd);
         userbaseinfo user = loginService.toLogin(phone,pwd);
+        session.setAttribute("LoginedUser",user);
         if(user.getName()!=null&&user.getPwd()!=null){
             return "index.html";
         }else{
