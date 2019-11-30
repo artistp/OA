@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thzw.oa.mapper.im_count_view_by_adminidMapper" >
+  <resultMap id="BaseResultMap" type="com.thzw.oa.entity.im_count_view_by_adminid" >
+    <result column="task_id" property="taskId" jdbcType="INTEGER" />
+    <result column="task_title" property="taskTitle" jdbcType="VARCHAR" />
+    <result column="begin_time" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="totals" property="totals" jdbcType="BIGINT" />
+    <result column="unchecked" property="unchecked" jdbcType="BIGINT" />
+    <result column="checked" property="checked" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.thzw.oa.entity.im_count_view_by_adminid" extends="BaseResultMap" >
+    <result column="task_content" property="taskContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    task_content
+  </sql>
+  <insert id="insert" parameterType="com.thzw.oa.entity.im_count_view_by_adminid" >
+    insert into im_count_view_by_adminid (task_id, task_title, begin_time, 
+      end_time, totals, unchecked, 
+      checked, task_content)
+    values (#{taskId,jdbcType=INTEGER}, #{taskTitle,jdbcType=VARCHAR}, #{beginTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{totals,jdbcType=BIGINT}, #{unchecked,jdbcType=BIGINT}, 
+      #{checked,jdbcType=BIGINT}, #{taskContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.thzw.oa.entity.im_count_view_by_adminid" >
+    insert into im_count_view_by_adminid
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="taskTitle != null" >
+        task_title,
+      </if>
+      <if test="beginTime != null" >
+        begin_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="totals != null" >
+        totals,
+      </if>
+      <if test="unchecked != null" >
+        unchecked,
+      </if>
+      <if test="checked != null" >
+        checked,
+      </if>
+      <if test="taskContent != null" >
+        task_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="taskTitle != null" >
+        #{taskTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null" >
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totals != null" >
+        #{totals,jdbcType=BIGINT},
+      </if>
+      <if test="unchecked != null" >
+        #{unchecked,jdbcType=BIGINT},
+      </if>
+      <if test="checked != null" >
+        #{checked,jdbcType=BIGINT},
+      </if>
+      <if test="taskContent != null" >
+        #{taskContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
