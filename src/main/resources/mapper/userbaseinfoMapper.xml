@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thzw.oa.mapper.userbaseinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.thzw.oa.entity.userbaseinfo" >
+    <id column="UserID" property="userid" jdbcType="BIGINT" />
+    <result column="Pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Birthday" property="birthday" jdbcType="DATE" />
+    <result column="Nation" property="nation" jdbcType="VARCHAR" />
+    <result column="PoliticalStatus" property="politicalstatus" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="OriginalPosition" property="originalposition" jdbcType="VARCHAR" />
+    <result column="AccreditedVillageID" property="accreditedvillageid" jdbcType="INTEGER" />
+    <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="PicURL" property="picurl" jdbcType="VARCHAR" />
+    <result column="RoleType" property="roletype" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserID, Pwd, Sex, Name, Birthday, Nation, PoliticalStatus, Email, Phone, OriginalPosition, 
+    AccreditedVillageID, Remarks, PicURL, RoleType
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from userbaseinfo
+    where UserID = #{userid,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPhone" resultMap="BaseResultMap" parameterType="com.thzw.oa.entity.userbaseinfo" >
+    select
+    <include refid="Base_Column_List" />
+    from userbaseinfo
+    where Phone = #{phone,jdbcType=VARCHAR} and Pwd=#{pwd,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from userbaseinfo
+    where UserID = #{userid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.thzw.oa.entity.userbaseinfo" >
+    insert into userbaseinfo (UserID, Pwd, Sex, 
+      Name, Birthday, Nation, 
+      PoliticalStatus, Email, Phone, 
+      OriginalPosition, AccreditedVillageID, 
+      Remarks, PicURL, RoleType
+      )
+    values (#{userid,jdbcType=BIGINT}, #{pwd,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{nation,jdbcType=VARCHAR}, 
+      #{politicalstatus,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{originalposition,jdbcType=VARCHAR}, #{accreditedvillageid,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR}, #{picurl,jdbcType=VARCHAR}, #{roletype,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.thzw.oa.entity.userbaseinfo" >
+    insert into userbaseinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="pwd != null" >
+        Pwd,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+      <if test="nation != null" >
+        Nation,
+      </if>
+      <if test="politicalstatus != null" >
+        PoliticalStatus,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="originalposition != null" >
+        OriginalPosition,
+      </if>
+      <if test="accreditedvillageid != null" >
+        AccreditedVillageID,
+      </if>
+      <if test="remarks != null" >
+        Remarks,
+      </if>
+      <if test="picurl != null" >
+        PicURL,
+      </if>
+      <if test="roletype != null" >
+        RoleType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalstatus != null" >
+        #{politicalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="originalposition != null" >
+        #{originalposition,jdbcType=VARCHAR},
+      </if>
+      <if test="accreditedvillageid != null" >
+        #{accreditedvillageid,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl != null" >
+        #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null" >
+        #{roletype,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.userbaseinfo" >
+    update userbaseinfo
+    <set >
+      <if test="pwd != null" >
+        Pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null" >
+        Nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalstatus != null" >
+        PoliticalStatus = #{politicalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="originalposition != null" >
+        OriginalPosition = #{originalposition,jdbcType=VARCHAR},
+      </if>
+      <if test="accreditedvillageid != null" >
+        AccreditedVillageID = #{accreditedvillageid,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl != null" >
+        PicURL = #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null" >
+        RoleType = #{roletype,jdbcType=TINYINT},
+      </if>
+    </set>
+    where UserID = #{userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.thzw.oa.entity.userbaseinfo" >
+    update userbaseinfo
+    set Pwd = #{pwd,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=DATE},
+      Nation = #{nation,jdbcType=VARCHAR},
+      PoliticalStatus = #{politicalstatus,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      OriginalPosition = #{originalposition,jdbcType=VARCHAR},
+      AccreditedVillageID = #{accreditedvillageid,jdbcType=INTEGER},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      PicURL = #{picurl,jdbcType=VARCHAR},
+      RoleType = #{roletype,jdbcType=TINYINT}
+    where UserID = #{userid,jdbcType=BIGINT}
+  </update>
+</mapper>

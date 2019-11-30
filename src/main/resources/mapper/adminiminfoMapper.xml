@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thzw.oa.mapper.adminiminfoMapper" >
+  <resultMap id="BaseResultMap" type="com.thzw.oa.entity.adminiminfo" >
+    <id column="IMID" property="imid" jdbcType="INTEGER" />
+    <result column="Title" property="title" jdbcType="VARCHAR" />
+    <result column="STime" property="stime" jdbcType="TIMESTAMP" />
+    <result column="ETime" property="etime" jdbcType="TIMESTAMP" />
+    <result column="UserID" property="userid" jdbcType="BIGINT" />
+    <result column="IMType" property="imtype" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.thzw.oa.entity.adminiminfo" extends="BaseResultMap" >
+    <result column="IMContent" property="imcontent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IMID, Title, STime, ETime, UserID, IMType
+  </sql>
+  <sql id="Blob_Column_List" >
+    IMContent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from adminiminfo
+    where IMID = #{imid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from adminiminfo
+    where IMID = #{imid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.thzw.oa.entity.adminiminfo" >
+    insert into adminiminfo (IMID, Title, STime, 
+      ETime, UserID, IMType, 
+      IMContent)
+    values (#{imid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{stime,jdbcType=TIMESTAMP}, 
+      #{etime,jdbcType=TIMESTAMP}, #{userid,jdbcType=BIGINT}, #{imtype,jdbcType=TINYINT}, 
+      #{imcontent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.thzw.oa.entity.adminiminfo" >
+    insert into adminiminfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imid != null" >
+        IMID,
+      </if>
+      <if test="title != null" >
+        Title,
+      </if>
+      <if test="stime != null" >
+        STime,
+      </if>
+      <if test="etime != null" >
+        ETime,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="imtype != null" >
+        IMType,
+      </if>
+      <if test="imcontent != null" >
+        IMContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imid != null" >
+        #{imid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null" >
+        #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etime != null" >
+        #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="imtype != null" >
+        #{imtype,jdbcType=TINYINT},
+      </if>
+      <if test="imcontent != null" >
+        #{imcontent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.adminiminfo" >
+    update adminiminfo
+    <set >
+      <if test="title != null" >
+        Title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null" >
+        STime = #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etime != null" >
+        ETime = #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="imtype != null" >
+        IMType = #{imtype,jdbcType=TINYINT},
+      </if>
+      <if test="imcontent != null" >
+        IMContent = #{imcontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where IMID = #{imid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.thzw.oa.entity.adminiminfo" >
+    update adminiminfo
+    set Title = #{title,jdbcType=VARCHAR},
+      STime = #{stime,jdbcType=TIMESTAMP},
+      ETime = #{etime,jdbcType=TIMESTAMP},
+      UserID = #{userid,jdbcType=BIGINT},
+      IMType = #{imtype,jdbcType=TINYINT},
+      IMContent = #{imcontent,jdbcType=LONGVARCHAR}
+    where IMID = #{imid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.thzw.oa.entity.adminiminfo" >
+    update adminiminfo
+    set Title = #{title,jdbcType=VARCHAR},
+      STime = #{stime,jdbcType=TIMESTAMP},
+      ETime = #{etime,jdbcType=TIMESTAMP},
+      UserID = #{userid,jdbcType=BIGINT},
+      IMType = #{imtype,jdbcType=TINYINT}
+    where IMID = #{imid,jdbcType=INTEGER}
+  </update>
+</mapper>

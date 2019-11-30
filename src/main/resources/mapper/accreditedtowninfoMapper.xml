@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thzw.oa.mapper.accreditedtowninfoMapper" >
+  <resultMap id="BaseResultMap" type="com.thzw.oa.entity.accreditedtowninfo" >
+    <id column="AccreditedTownID" property="accreditedtownid" jdbcType="INTEGER" />
+    <result column="AccreditedCountryID" property="accreditedcountryid" jdbcType="INTEGER" />
+    <result column="AccreditedTownName" property="accreditedtownname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AccreditedTownID, AccreditedCountryID, AccreditedTownName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from accreditedtowninfo
+    where AccreditedTownID = #{accreditedtownid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from accreditedtowninfo
+    where AccreditedTownID = #{accreditedtownid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.thzw.oa.entity.accreditedtowninfo" >
+    insert into accreditedtowninfo (AccreditedTownID, AccreditedCountryID, 
+      AccreditedTownName)
+    values (#{accreditedtownid,jdbcType=INTEGER}, #{accreditedcountryid,jdbcType=INTEGER}, 
+      #{accreditedtownname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.thzw.oa.entity.accreditedtowninfo" >
+    insert into accreditedtowninfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accreditedtownid != null" >
+        AccreditedTownID,
+      </if>
+      <if test="accreditedcountryid != null" >
+        AccreditedCountryID,
+      </if>
+      <if test="accreditedtownname != null" >
+        AccreditedTownName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accreditedtownid != null" >
+        #{accreditedtownid,jdbcType=INTEGER},
+      </if>
+      <if test="accreditedcountryid != null" >
+        #{accreditedcountryid,jdbcType=INTEGER},
+      </if>
+      <if test="accreditedtownname != null" >
+        #{accreditedtownname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.accreditedtowninfo" >
+    update accreditedtowninfo
+    <set >
+      <if test="accreditedcountryid != null" >
+        AccreditedCountryID = #{accreditedcountryid,jdbcType=INTEGER},
+      </if>
+      <if test="accreditedtownname != null" >
+        AccreditedTownName = #{accreditedtownname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AccreditedTownID = #{accreditedtownid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.thzw.oa.entity.accreditedtowninfo" >
+    update accreditedtowninfo
+    set AccreditedCountryID = #{accreditedcountryid,jdbcType=INTEGER},
+      AccreditedTownName = #{accreditedtownname,jdbcType=VARCHAR}
+    where AccreditedTownID = #{accreditedtownid,jdbcType=INTEGER}
+  </update>
+</mapper>

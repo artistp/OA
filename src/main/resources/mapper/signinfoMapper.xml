@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thzw.oa.mapper.signinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.thzw.oa.entity.signinfo" >
+    <id column="SignID" property="signid" jdbcType="INTEGER" />
+    <result column="UserID" property="userid" jdbcType="BIGINT" />
+    <result column="SignDateTime" property="signdatetime" jdbcType="TIMESTAMP" />
+    <result column="Latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="Longitude" property="longitude" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SignID, UserID, SignDateTime, Latitude, Longitude
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from signinfo
+    where SignID = #{signid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from signinfo
+    where SignID = #{signid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.thzw.oa.entity.signinfo" >
+    insert into signinfo (SignID, UserID, SignDateTime, 
+      Latitude, Longitude)
+    values (#{signid,jdbcType=INTEGER}, #{userid,jdbcType=BIGINT}, #{signdatetime,jdbcType=TIMESTAMP}, 
+      #{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.thzw.oa.entity.signinfo" >
+    insert into signinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="signid != null" >
+        SignID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="signdatetime != null" >
+        SignDateTime,
+      </if>
+      <if test="latitude != null" >
+        Latitude,
+      </if>
+      <if test="longitude != null" >
+        Longitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="signid != null" >
+        #{signid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="signdatetime != null" >
+        #{signdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.signinfo" >
+    update signinfo
+    <set >
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="signdatetime != null" >
+        SignDateTime = #{signdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latitude != null" >
+        Latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        Longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SignID = #{signid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.thzw.oa.entity.signinfo" >
+    update signinfo
+    set UserID = #{userid,jdbcType=BIGINT},
+      SignDateTime = #{signdatetime,jdbcType=TIMESTAMP},
+      Latitude = #{latitude,jdbcType=VARCHAR},
+      Longitude = #{longitude,jdbcType=VARCHAR}
+    where SignID = #{signid,jdbcType=INTEGER}
+  </update>
+</mapper>

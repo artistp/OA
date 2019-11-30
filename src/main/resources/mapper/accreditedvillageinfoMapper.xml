@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thzw.oa.mapper.accreditedvillageinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.thzw.oa.entity.accreditedvillageinfo" >
+    <id column="AccreditedVillageID" property="accreditedvillageid" jdbcType="INTEGER" />
+    <result column="AccreditedVillageName" property="accreditedvillagename" jdbcType="VARCHAR" />
+    <result column="AccreditedTownID" property="accreditedtownid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AccreditedVillageID, AccreditedVillageName, AccreditedTownID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from accreditedvillageinfo
+    where AccreditedVillageID = #{accreditedvillageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from accreditedvillageinfo
+    where AccreditedVillageID = #{accreditedvillageid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.thzw.oa.entity.accreditedvillageinfo" >
+    insert into accreditedvillageinfo (AccreditedVillageID, AccreditedVillageName, 
+      AccreditedTownID)
+    values (#{accreditedvillageid,jdbcType=INTEGER}, #{accreditedvillagename,jdbcType=VARCHAR}, 
+      #{accreditedtownid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.thzw.oa.entity.accreditedvillageinfo" >
+    insert into accreditedvillageinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accreditedvillageid != null" >
+        AccreditedVillageID,
+      </if>
+      <if test="accreditedvillagename != null" >
+        AccreditedVillageName,
+      </if>
+      <if test="accreditedtownid != null" >
+        AccreditedTownID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accreditedvillageid != null" >
+        #{accreditedvillageid,jdbcType=INTEGER},
+      </if>
+      <if test="accreditedvillagename != null" >
+        #{accreditedvillagename,jdbcType=VARCHAR},
+      </if>
+      <if test="accreditedtownid != null" >
+        #{accreditedtownid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.accreditedvillageinfo" >
+    update accreditedvillageinfo
+    <set >
+      <if test="accreditedvillagename != null" >
+        AccreditedVillageName = #{accreditedvillagename,jdbcType=VARCHAR},
+      </if>
+      <if test="accreditedtownid != null" >
+        AccreditedTownID = #{accreditedtownid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where AccreditedVillageID = #{accreditedvillageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.thzw.oa.entity.accreditedvillageinfo" >
+    update accreditedvillageinfo
+    set AccreditedVillageName = #{accreditedvillagename,jdbcType=VARCHAR},
+      AccreditedTownID = #{accreditedtownid,jdbcType=INTEGER}
+    where AccreditedVillageID = #{accreditedvillageid,jdbcType=INTEGER}
+  </update>
+</mapper>

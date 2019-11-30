@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thzw.oa.mapper.filesinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.thzw.oa.entity.filesinfo" >
+    <id column="FileID" property="fileid" jdbcType="INTEGER" />
+    <result column="FilePath" property="filepath" jdbcType="VARCHAR" />
+    <result column="UploadTime" property="uploadtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FileID, FilePath, UploadTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from filesinfo
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from filesinfo
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.thzw.oa.entity.filesinfo" >
+    insert into filesinfo (FileID, FilePath, UploadTime
+      )
+    values (#{fileid,jdbcType=INTEGER}, #{filepath,jdbcType=VARCHAR}, #{uploadtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.thzw.oa.entity.filesinfo" >
+    insert into filesinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        FileID,
+      </if>
+      <if test="filepath != null" >
+        FilePath,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.filesinfo" >
+    update filesinfo
+    <set >
+      <if test="filepath != null" >
+        FilePath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.thzw.oa.entity.filesinfo" >
+    update filesinfo
+    set FilePath = #{filepath,jdbcType=VARCHAR},
+      UploadTime = #{uploadtime,jdbcType=TIMESTAMP}
+    where FileID = #{fileid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thzw.oa.mapper.imtomemberMapper" >
+  <resultMap id="BaseResultMap" type="com.thzw.oa.entity.imtomember" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="IMID" property="imid" jdbcType="INTEGER" />
+    <result column="ToUserID" property="touserid" jdbcType="BIGINT" />
+    <result column="IFCheck" property="ifcheck" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, IMID, ToUserID, IFCheck
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from imtomember
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from imtomember
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.thzw.oa.entity.imtomember" >
+    insert into imtomember (ID, IMID, ToUserID, 
+      IFCheck)
+    values (#{id,jdbcType=INTEGER}, #{imid,jdbcType=INTEGER}, #{touserid,jdbcType=BIGINT}, 
+      #{ifcheck,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.thzw.oa.entity.imtomember" >
+    insert into imtomember
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="imid != null" >
+        IMID,
+      </if>
+      <if test="touserid != null" >
+        ToUserID,
+      </if>
+      <if test="ifcheck != null" >
+        IFCheck,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imid != null" >
+        #{imid,jdbcType=INTEGER},
+      </if>
+      <if test="touserid != null" >
+        #{touserid,jdbcType=BIGINT},
+      </if>
+      <if test="ifcheck != null" >
+        #{ifcheck,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.thzw.oa.entity.imtomember" >
+    update imtomember
+    <set >
+      <if test="imid != null" >
+        IMID = #{imid,jdbcType=INTEGER},
+      </if>
+      <if test="touserid != null" >
+        ToUserID = #{touserid,jdbcType=BIGINT},
+      </if>
+      <if test="ifcheck != null" >
+        IFCheck = #{ifcheck,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.thzw.oa.entity.imtomember" >
+    update imtomember
+    set IMID = #{imid,jdbcType=INTEGER},
+      ToUserID = #{touserid,jdbcType=BIGINT},
+      IFCheck = #{ifcheck,jdbcType=TINYINT}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
