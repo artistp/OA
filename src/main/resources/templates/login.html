@@ -10,16 +10,16 @@
   <title>Dashio - Bootstrap Admin Template</title>
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../static/img/favicon.png" rel="icon">
+  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
-  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link href="../static/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/style-responsive.css" rel="stylesheet">
+  <link href="../static/css/style.css" rel="stylesheet">
+  <link href="../static/css/style-responsive.css" rel="stylesheet">
   
   
 </head>
@@ -33,7 +33,7 @@
       <form class="form-login">
         <h2 class="form-login-heading">sign in now</h2>
         <div class="login-wrap">
-          <input id="phone" type="text" class="form-control" placeholder="Phone" autofocus>
+          <input id="phone" type="text" class="form-control" placeholder="Phone" >
           <br>
           <input id="pwd" type="password" class="form-control" placeholder="Password">
           <label class="checkbox">
@@ -42,13 +42,8 @@
             <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
             </span>
             </label>
-          <input type="button" class="btn btn-theme btn-block" onclick="login()">sadasdads</input>
+          <input type="button" class="btn btn-theme btn-block" value="SIGN IN" onclick="tologin()"></input>
           <hr>
-          <div class="login-social-link centered">
-            <p>or you can sign in via your social network</p>
-            <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
-            <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
-          </div>
           <div class="registration">
             Don't have an account yet?<br/>
             <a class="" href="#">
@@ -60,46 +55,41 @@
     </div>
   </div>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../static/lib/jquery/jquery.min.js"></script>
+  <script src="../static/lib/bootstrap/js/bootstrap.min.js"></script>
   <!--BACKSTRETCH-->
   <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-  <script type="text/javascript" src="lib/jquery.backstretch.min.js">
+  <script type="text/javascript" src="../static/lib/jquery.backstretch.min.js">
 
   </script>
   <script>
-    $.backstretch("img/login-bg.jpg", {
+    $.backstretch("../static/img/login-bg.jpg", {
       speed: 500
     });
   </script>
 
   <script type="text/javascript">
-
-      function login() {
-       alert( $('#phone').val());
-      alert($('#pwd').val());
-       $.ajax({
-                    type: "POST"
-                    , url: "/Login/tologin"
-                    , data: {
-                        phone:$('#phone').val()
-                        ,pwd:$('#pwd').val()
-                    }
-                    , success: function (ret) {
-
-                    },
-                    error:function () {
-
-                    }
-                })
-                return false;
-            });
+    function tologin() {
+      $.ajax({
+        url: '/tologin',
+        type: 'get',
+        data: {phone: $('#phone').val(), pwd: $('#pwd').val()},
+        success: function (d) {
+          if (d == "index.html") {
+            window.location.href = '/index';
+          } else {
+            window.location.href = 'error.html';
+          }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          alert(XMLHttpRequest.status); // 200
+          alert(textStatus); // parsererror
+          alert(errorThrown); // SyntaxError: Unexpected end of input
+        }
+      })
     }
-</script>
+  </script>
 
-<script>
-
-</script>
 </body>
 
 </html>

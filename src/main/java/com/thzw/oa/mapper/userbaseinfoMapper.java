@@ -23,6 +23,8 @@ public interface userbaseinfoMapper {
 
     userbaseinfo selectByPrimaryKey(Long userid);
 
+    userbaseinfo selectByPhone(userbaseinfo record);
+
     int updateByExampleSelective(@Param("record") userbaseinfo record, @Param("example") userbaseinfoExample example);
 
     int updateByExample(@Param("record") userbaseinfo record, @Param("example") userbaseinfoExample example);

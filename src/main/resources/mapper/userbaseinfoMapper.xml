@@ -99,6 +99,12 @@
     from userbaseinfo
     where UserID = #{userid,jdbcType=BIGINT}
   </select>
+  <select id="selectByPhone" resultMap="BaseResultMap" parameterType="com.thzw.oa.entity.userbaseinfo" >
+    select
+    <include refid="Base_Column_List" />
+    from userbaseinfo
+    where phone = #{phone,jdbcType=VARCHAR} and pwd = #{pwd,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from userbaseinfo
     where UserID = #{userid,jdbcType=BIGINT}

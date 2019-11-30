@@ -31,6 +31,10 @@ public class userbaseinfo {
 
     private Byte roletype;
 
+    public userbaseinfo() {
+
+    }
+
     public Long getUserid() {
         return userid;
     }

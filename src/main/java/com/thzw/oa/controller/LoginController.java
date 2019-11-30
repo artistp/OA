@@ -8,28 +8,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping(value = "/Login")
 public class LoginController {
     @Autowired
     private LoginService loginService;
 
     @RequestMapping(value = "/login")
-    public String Login(){
-        System.out.println("11111111");
+    public String Longin(){
         return "/login.html";
     }
 
-    @RequestMapping(value = "/tologin")
+    @RequestMapping(value = "/index")
+    public String index(){
+        return "/index.html";
+    }
+
     @ResponseBody
-    public String toLogin(String phone,String pwd){
-        // System.out.println("222222222222222");
+    @RequestMapping(value = "/tologin")
+    public String toLogin(String phone,String pwd,HttpSession session){
+        System.out.println(phone);
+        System.out.println(pwd);
         userbaseinfo user = loginService.toLogin(phone,pwd);
+        session.setAttribute("LoginedUser",user);
         if(user.getName()!=null&&user.getPwd()!=null){
-            System.out.println("success");
-            return "success";
+            return "index.html";
         }else{
-            System.out.println("error");
             return "error";
         }
     }
