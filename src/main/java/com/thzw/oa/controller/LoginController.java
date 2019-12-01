@@ -40,6 +40,17 @@ public class LoginController {
         }
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/loginout")
+    public String LoginOut(HttpSession session){
+        if(session.getAttribute("LoginedUser")!=null) {
+            session.removeAttribute("LoginedUser");
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
 
     /*
     * 提供一个数据接口：获取当前登录的用户信息
