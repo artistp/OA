@@ -107,7 +107,8 @@ public class MissionController {
 //        test.setUserid((long)6);
 //        Byte imtype = 0b01;
 //        test.setImtype(imtype);
-
+        int imid = (int)session.getAttribute("IMID_UPDATE");
+        info.setImid(imid);
         int ret = adminimService.updateMission(info);
         if (ret == -1)
             return "信息错误！请检查输入！";
@@ -147,8 +148,7 @@ public class MissionController {
     @RequestMapping("updateRequest")
     public String updateRequest(int imid,HttpSession session)
     {
-
-        session.setAttribute("IMID_UPDATE",5);
+        session.setAttribute("IMID_UPDATE",imid);
         return "redirect:/captain/updateView";
     }
 
