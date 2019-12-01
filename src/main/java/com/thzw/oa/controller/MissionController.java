@@ -33,6 +33,8 @@ public class MissionController {
     }
 
 
+
+
     @RequestMapping("/selectMapping")
     @ResponseBody
     public List<find_members_by_adminid> selectMapping(HttpSession session)
@@ -145,8 +147,15 @@ public class MissionController {
     @RequestMapping("updateRequest")
     public String updateRequest(int imid,HttpSession session)
     {
-        session.setAttribute("IMID_UPDATE",imid);
-        return "/update.html";
+
+        session.setAttribute("IMID_UPDATE",5);
+        return "redirect:/captain/updateView";
+    }
+
+    @RequestMapping("/updateView")
+    public String updateView()
+    {
+        return "update.html";
     }
 
 }
