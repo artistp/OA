@@ -54,9 +54,18 @@ public class AdminimService implements AdminimS {
     public adminiminfo addMission(adminiminfo info ,long id)
     {
         adminiminfoExample example = new adminiminfoExample();
-        int count = adminiminfoMapper.countByExample( example );
+        List<adminiminfo> list = adminiminfoMapper.selectByExample(example);
+        int  max = -1;
+        if( list == null || list.size() ==0 )
+            max = 0;
+        for( adminiminfo temp : list)
+        {
+            if(temp.getImid() > max)
+                max = temp.getImid();
+        }
+        max += 1;
 
-        // info.setImid( count+1 );
+        info.setImid( max );
         Byte imtype = 0b01;
         info.setUserid(id);
         info.setImtype(imtype);

@@ -16,7 +16,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/")
     public String Longin(){
         return "/login.html";
     }
@@ -24,6 +24,11 @@ public class LoginController {
     @RequestMapping(value = "/index")
     public String index(){
         return "/index.html";
+    }
+
+    @RequestMapping(value = "/table")
+    public String table(){
+        return "/basic_table.html";
     }
 
     @ResponseBody

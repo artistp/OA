@@ -25,7 +25,7 @@ public class IndexController {
         userbaseinfo logineduser = (userbaseinfo)session.getAttribute("LoginedUser");
         if( logineduser == null)
             return null;
-        long id = logineduser.getAccreditedvillageid();
+        long id = 356;
         List<im_count_view_by_adminid> findimByAdminids = indexService.getims(id);
 
         return findimByAdminids;

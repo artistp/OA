@@ -57,7 +57,7 @@ public class MissionController {
         userbaseinfo logineduser = (userbaseinfo)session.getAttribute("LoginedUser");
         if( logineduser == null)
             return null;
-        long id = logineduser.getAccreditedvillageid();
+        long id = logineduser.getUserid();
 
         // 先发布任务
         adminiminfo inf = adminimService.addMission(info ,id);
@@ -95,7 +95,6 @@ public class MissionController {
         userbaseinfo logineduser = (userbaseinfo)session.getAttribute("LoginedUser");
         if( logineduser == null)
             return "请登录！";
-        long id = logineduser.getAccreditedvillageid();
 //         测试：
 //        adminiminfo test = new adminiminfo();
 //
@@ -109,6 +108,9 @@ public class MissionController {
 //        test.setImtype(imtype);
         int imid = (int)session.getAttribute("IMID_UPDATE");
         info.setImid(imid);
+        info.setUserid(logineduser.getUserid());
+        Byte imtype = 0b01;
+        info.setImtype(imtype);
         int ret = adminimService.updateMission(info);
         if (ret == -1)
             return "信息错误！请检查输入！";
@@ -155,7 +157,7 @@ public class MissionController {
     @RequestMapping("/updateView")
     public String updateView()
     {
-        return "update.html";
+        return "/update.html";
     }
 
 }
