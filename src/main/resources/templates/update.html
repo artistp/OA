@@ -8,7 +8,6 @@
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <title>O A 办公系统✿✿ -- 唐佳 吴鹏 何超凡 赵雷</title>
-  <!-- Favicons -->
   <link href="../static/img/favicon.png" rel="icon">
   <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -29,16 +28,13 @@
   <link rel="stylesheet" type="text/css" href="../static/lib/bootstrap-timepicker/compiled/timepicker.css" />
   <link rel="stylesheet" type="text/css" href="../static/lib/bootstrap-datetimepicker/datertimepicker.css" />
 
-
-
-
-
   <!--external css-->
   <link rel="stylesheet" type="text/css" href="../static/css/zabuto_calendar.css">
   <link rel="stylesheet" type="text/css" href="../static/lib/gritter/css/jquery.gritter.css" />
   <!-- Custom styles for this template -->
 
   <script src="../static/lib/chart-master/Chart.js"></script>
+
 </head>
 
 <body>
@@ -370,7 +366,7 @@
                   </div>
                 </div>
                 <div class="col-md-12">
-              <button class="btn btn-theme02" type="button"name="submit">发布任务</button>
+              <button class="btn btn-theme02" type="button"name="submit">更新目标任务</button>
               </div>
               </table>
           </div>
@@ -396,6 +392,7 @@
     </footer>
     <!--footer end-->
   </section>
+
 
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="lib/jquery/jquery.min.js"></script>
@@ -508,6 +505,9 @@
       //为人员选择添加监听 将数据获取到传送到最终结果
       //ajax获取数据并传递
       $("#members_check").html(showmsg);
+
+
+
       $("[name='submit']").click(function(){
         //获取信息
 
@@ -518,15 +518,15 @@
         //ajax
         $.ajax(
             {
-                url: "/captain/distMission",
+                url: "/captain/updateMission",
                 type: "POST",
                 dataType: "json",
                 data: { title : imtitle , stime: imbegin_time, imcontent :content , etime:imend_time },
                 success: function (result) {
-                    alert("发布完成");
+                    alert("更新完成");
                 },
                 error: function (xhr, status, p3, p4) {
-                    alert("发布完成");
+                    alert("更新完成");
                 }
         });
       });
@@ -534,6 +534,7 @@
     });
 
   </script>
+
 </body>
 
 </html>
