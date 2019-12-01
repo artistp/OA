@@ -31,32 +31,20 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.thzw.oa.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-<!--&lt;!&ndash;        <table tableName="accreditedcountryinfo" domainObjectName="accreditedcountryinfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table tableName="accreditedtowninfo" domainObjectName="accreditedtowninfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table tableName="accreditedvillageinfo" domainObjectName="accreditedvillageinfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table tableName="adminareainfo" domainObjectName="adminareainfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table tableName="adminiminfo" domainObjectName="adminiminfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table tableName="filesinfo" domainObjectName="filesinfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table tableName="imfilemapinfo" domainObjectName="imfilemapinfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table tableName="imtomember" domainObjectName="imtomember" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table tableName="signinfo" domainObjectName="signinfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--&lt;!&ndash;        <table tableName="userbaseinfo" domainObjectName="userbaseinfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>&ndash;&gt;-->
-<!--        <table tableName="im_count_view_by_adminid" domainObjectName="im_count_view_by_adminid" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-<!--        <table tableName="find_members_by_adminid" domainObjectName="find_members_by_adminid" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table schema="" tableName="accreditedcountryinfo"  domainObjectName="accreditedcountryinfo"></table>
-        <table schema="" tableName="accreditedtowninfo" domainObjectName="accreditedtowninfo"></table>
-        <table schema="" tableName="accreditedvillageinfo" domainObjectName="accreditedvillageinfo"></table>
-        <table schema="" tableName="adminareainfo" domainObjectName="adminareainfo"></table>
-        <table schema="" tableName="adminiminfo" domainObjectName="adminiminfo"></table>
-        <table schema="" tableName="filesinfo" domainObjectName="filesinfo"></table>
-        <table schema="" tableName="imfilemapinfo" domainObjectName="imfilemapinfo"></table>
-        <table schema="" tableName="imtomember" domainObjectName="imtomember"></table>
-        <table schema="" tableName="signinfo"  domainObjectName="signinfo"></table>
-        <table schema="" tableName="userbaseinfo" domainObjectName="userbaseinfo"></table>
-        <table schema="" tableName="im_count_view_by_adminid" domainObjectName="im_count_view_by_adminid"></table>
-        <table schema="" tableName="find_members_by_adminid" domainObjectName="find_members_by_adminid"></table>
 
+       <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+<!--        <table schema="" tableName="accreditedcountryinfo"  domainObjectName="accreditedcountryinfo"></table>-->
+<!--        <table schema="" tableName="accreditedtowninfo" domainObjectName="accreditedtowninfo"></table>-->
+<!--        <table schema="" tableName="accreditedvillageinfo" domainObjectName="accreditedvillageinfo"></table>-->
+<!--        <table schema="" tableName="adminareainfo" domainObjectName="adminareainfo"></table>-->
+<!--        <table schema="" tableName="adminiminfo" domainObjectName="adminiminfo"></table>-->
+<!--        <table schema="" tableName="filesinfo" domainObjectName="filesinfo"></table>-->
+<!--        <table schema="" tableName="imfilemapinfo" domainObjectName="imfilemapinfo"></table>-->
+<!--        <table schema="" tableName="imtomember" domainObjectName="imtomember"></table>-->
+<!--        <table schema="" tableName="signinfo"  domainObjectName="signinfo"></table>-->
+<!--        <table schema="" tableName="userbaseinfo" domainObjectName="userbaseinfo"></table>-->
+<!--        <table schema="" tableName="im_count_view_by_adminid" domainObjectName="im_count_view_by_adminid"></table>-->
+<!--        <table schema="" tableName="find_members_by_adminid" domainObjectName="find_members_by_adminid"></table>-->
+        <table schema="" tableName="teammates_select_mission" domainObjectName="teammates_select_mission"></table>
     </context>
 </generatorConfiguration>

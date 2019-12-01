@@ -1,6 +1,7 @@
 package com.thzw.oa.controller;
 
 import com.thzw.oa.entity.find_members_by_adminid;
+import com.thzw.oa.entity.teammates_select_mission;
 import com.thzw.oa.entity.userbaseinfo;
 import com.thzw.oa.service.AdminimService;
 import com.thzw.oa.service.MissionService;
@@ -112,6 +113,32 @@ public class MissionController {
     }
 
 
+    @RequestMapping("/selectMission")
+    @ResponseBody
+    public List<teammates_select_mission> selectMission(HttpSession session)
+    {
+        /*
+        // 获取session   已登录的用户的账户session
+        userbaseinfo logineduser = (userbaseinfo)session.getAttribute("LoginedUser");
+        if( logineduser == null)
+            return null;
+            */
+        /*
+        adminiminfo test = new adminiminfo();
+
+        test.setTitle("title");
+        test.setImcontent("IMContent");
+        test.setStime(new Date());
+        test.setEtime(new Date());
+        test.setUserid((long)6);
+        Byte imtype = 0b01;
+        test.setImtype(imtype);
+        */
+
+        long id = 75; //logineduser.getAccreditedvillageid();
+        List<teammates_select_mission> list = adminimService.selectMission(id);
+        return list;
+    }
 
 
     @RequestMapping("/test")

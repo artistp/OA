@@ -1,11 +1,9 @@
 package com.thzw.oa.service;
 
-import com.thzw.oa.entity.adminiminfo;
-import com.thzw.oa.entity.adminiminfoExample;
-import com.thzw.oa.entity.find_members_by_adminid;
-import com.thzw.oa.entity.imtomember;
+import com.thzw.oa.entity.*;
 import com.thzw.oa.mapper.adminiminfoMapper;
 import com.thzw.oa.mapper.imtomemberMapper;
+import com.thzw.oa.mapper.teammates_select_missionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +18,9 @@ public class AdminimService implements AdminimS {
 
     @Autowired
     private imtomemberMapper imtomemberMapper;
+
+    @Autowired
+    private teammates_select_missionMapper select_missionMapper;
 
     /*
     * 添加任务到任务列表
@@ -115,6 +116,20 @@ public class AdminimService implements AdminimS {
         return ret;
     }
 
+
+    /*
+     * 队员查看一个任务
+     * imid 任务ID
+     *
+     * */
+    public List<teammates_select_mission> selectMission(long id)
+    {
+        teammates_select_missionExample example = new teammates_select_missionExample();
+        teammates_select_missionExample.Criteria criteria = example.createCriteria();
+        criteria.andUseridEqualTo(id);
+        List<teammates_select_mission> list = select_missionMapper.selectByExample(example);
+        return list;
+    }
 }
 
 /*
