@@ -21,6 +21,11 @@ public class AdminimService implements AdminimS {
     @Autowired
     private imtomemberMapper imtomemberMapper;
 
+    /*
+    * 添加任务到任务列表
+    *
+    * 任务信息使用基本类型存储
+    * */
     public adminiminfo addMission(String title, String IMContent, Date Stime, Date Etime , long UserId)
     {
         adminiminfoExample example = new adminiminfoExample();
@@ -40,7 +45,11 @@ public class AdminimService implements AdminimS {
 
         return info;
     }
-
+    /*
+     * 添加任务到任务列表
+     *
+     * 任务信息使用 任务类adminiminfo存储
+     * */
     public adminiminfo addMission(adminiminfo info ,long id)
     {
         adminiminfoExample example = new adminiminfoExample();
@@ -55,6 +64,12 @@ public class AdminimService implements AdminimS {
         return info;
     }
 
+    /*
+     * 队长 发布任务给 管理的队员
+     *
+     *@ 任务信息使用 任务类adminiminfo存储
+     *@ List<find_members_by_adminid> findM 保存队长的信息
+     * */
     public int missionToUser(adminiminfo inf, List<find_members_by_adminid> findM)
     {
         int missionID = inf.getImid();

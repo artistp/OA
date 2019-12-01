@@ -9,6 +9,7 @@
     <result column="totals" property="totals" jdbcType="BIGINT" />
     <result column="unchecked" property="unchecked" jdbcType="BIGINT" />
     <result column="checked" property="checked" jdbcType="BIGINT" />
+    <result column="UserID" property="userid" jdbcType="BIGINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.thzw.oa.entity.im_count_view_by_adminid" extends="BaseResultMap" >
     <result column="task_content" property="taskContent" jdbcType="LONGVARCHAR" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    task_id, task_title, begin_time, end_time, totals, unchecked, checked
+    task_id, task_title, begin_time, end_time, totals, unchecked, checked, UserID
   </sql>
   <sql id="Blob_Column_List" >
     task_content
@@ -116,10 +117,12 @@
   <insert id="insert" parameterType="com.thzw.oa.entity.im_count_view_by_adminid" >
     insert into im_count_view_by_adminid (task_id, task_title, begin_time, 
       end_time, totals, unchecked, 
-      checked, task_content)
+      checked, UserID, task_content
+      )
     values (#{taskId,jdbcType=INTEGER}, #{taskTitle,jdbcType=VARCHAR}, #{beginTime,jdbcType=TIMESTAMP}, 
       #{endTime,jdbcType=TIMESTAMP}, #{totals,jdbcType=BIGINT}, #{unchecked,jdbcType=BIGINT}, 
-      #{checked,jdbcType=BIGINT}, #{taskContent,jdbcType=LONGVARCHAR})
+      #{checked,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{taskContent,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.thzw.oa.entity.im_count_view_by_adminid" >
     insert into im_count_view_by_adminid
@@ -144,6 +147,9 @@
       </if>
       <if test="checked != null" >
         checked,
+      </if>
+      <if test="userid != null" >
+        UserID,
       </if>
       <if test="taskContent != null" >
         task_content,
@@ -170,6 +176,9 @@
       </if>
       <if test="checked != null" >
         #{checked,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
       </if>
       <if test="taskContent != null" >
         #{taskContent,jdbcType=LONGVARCHAR},
@@ -206,6 +215,9 @@
       <if test="record.checked != null" >
         checked = #{record.checked,jdbcType=BIGINT},
       </if>
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=BIGINT},
+      </if>
       <if test="record.taskContent != null" >
         task_content = #{record.taskContent,jdbcType=LONGVARCHAR},
       </if>
@@ -223,6 +235,7 @@
       totals = #{record.totals,jdbcType=BIGINT},
       unchecked = #{record.unchecked,jdbcType=BIGINT},
       checked = #{record.checked,jdbcType=BIGINT},
+      UserID = #{record.userid,jdbcType=BIGINT},
       task_content = #{record.taskContent,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,7 +249,8 @@
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
       totals = #{record.totals,jdbcType=BIGINT},
       unchecked = #{record.unchecked,jdbcType=BIGINT},
-      checked = #{record.checked,jdbcType=BIGINT}
+      checked = #{record.checked,jdbcType=BIGINT},
+      UserID = #{record.userid,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

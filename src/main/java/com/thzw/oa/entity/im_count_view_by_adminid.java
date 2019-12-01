@@ -17,6 +17,8 @@ public class im_count_view_by_adminid {
 
     private Long checked;
 
+    private Long userid;
+
     private String taskContent;
 
     public Integer getTaskId() {
@@ -73,6 +75,14 @@ public class im_count_view_by_adminid {
 
     public void setChecked(Long checked) {
         this.checked = checked;
+    }
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 
     public String getTaskContent() {

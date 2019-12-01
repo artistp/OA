@@ -39,4 +39,24 @@ public class LoginController {
             return "error";
         }
     }
+
+
+    /*
+    * 提供一个数据接口：获取当前登录的用户信息
+    *
+    * 以便前端获取当前登录者的信息
+    * */
+    @ResponseBody
+    @RequestMapping(value = "/loginedInfo")
+    public userbaseinfo loginInfo(HttpSession session){
+        userbaseinfo info = (userbaseinfo)session.getAttribute("LoginedUser");
+        if( info == null)
+        {
+            return null;
+        }
+        else {
+            return info;
+        }
+    }
+
 }

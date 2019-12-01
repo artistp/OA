@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface im_count_view_by_adminidMapper {
     int countByExample(im_count_view_by_adminidExample example);
