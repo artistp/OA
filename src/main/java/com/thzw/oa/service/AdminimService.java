@@ -57,7 +57,7 @@ public class AdminimService implements AdminimS {
 
         info.setImid( count+1 );
         Byte imtype = 0b01;
-
+        info.setUserid(id);
         info.setImtype(imtype);
         int ret = adminiminfoMapper.insert(info);
 
