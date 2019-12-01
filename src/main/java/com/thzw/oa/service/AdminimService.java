@@ -87,5 +87,39 @@ public class AdminimService implements AdminimS {
         }
         return 1;
     }
+
+
+    /*
+     * 删除一个任务
+     * imid 任务ID
+     * */
+    public int deleteMission(int imid)
+    {
+        int ret = adminiminfoMapper.deleteByPrimaryKey(imid);
+        return ret;
+    }
+
+    /*
+     * 删除一个任务
+     * imid 任务ID
+     * */
+    public int updateMission(adminiminfo info)
+    {
+        if(info == null && info.getImid() == null)
+            return -1;
+        adminiminfoExample example = new adminiminfoExample();
+        adminiminfoExample.Criteria criteria = example.createCriteria();
+        criteria.andImidEqualTo(info.getImid());
+
+        int ret = adminiminfoMapper.updateByExample(info,example);
+        return ret;
+    }
+
 }
-//
+
+/*
+2019-12-01
+高级数据库第十六组
+办公OA系统
+何超凡、唐佳、吴鹏、赵雷
+*/

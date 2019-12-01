@@ -61,8 +61,58 @@ public class MissionController {
         // 任务发布到队员
         List<find_members_by_adminid> findMembersByAdminids = missionService.getmates(id);
         adminimService.missionToUser(inf, findMembersByAdminids);
-        return "OK";
+        return "success";
     }
+
+
+
+
+    @RequestMapping("/deleteMission")
+    @ResponseBody
+    public String deleteMission(Integer imid, HttpSession session)
+    {
+//        // 获取session   已登录的用户的账户session
+//        userbaseinfo logineduser = (userbaseinfo)session.getAttribute("LoginedUser");
+//        if( logineduser == null)
+//            return "请登录！";
+//        long id = logineduser.getAccreditedvillageid();
+        imid = 3;
+        int ret = adminimService.deleteMission(imid);
+        if (ret == -1)
+            return "信息错误！请检查输入！";
+        return "success";
+    }
+
+
+    @RequestMapping("/updateMission")
+    @ResponseBody
+    public String updateMission(adminiminfo info, HttpSession session)
+    {
+        // 获取session   已登录的用户的账户session
+        userbaseinfo logineduser = (userbaseinfo)session.getAttribute("LoginedUser");
+        if( logineduser == null)
+            return "请登录！";
+        long id = logineduser.getAccreditedvillageid();
+//         测试：
+//        adminiminfo test = new adminiminfo();
+//
+//        test.setImid(2);
+//        test.setTitle("title");
+//        test.setImcontent("IMContent");
+//        test.setStime(new Date());
+//        test.setEtime(new Date());
+//        test.setUserid((long)6);
+//        Byte imtype = 0b01;
+//        test.setImtype(imtype);
+
+        int ret = adminimService.updateMission(info);
+        if (ret == -1)
+            return "信息错误！请检查输入！";
+        return "success";
+    }
+
+
+
 
     @RequestMapping("/test")
     @ResponseBody
@@ -97,3 +147,9 @@ public class MissionController {
         return "OK";
     }
 }
+/*
+2019-12-01
+高级数据库第十六组
+办公OA系统
+何超凡、唐佳、吴鹏、赵雷
+*/

@@ -13,5 +13,12 @@ public interface AdminimS {
     public adminiminfo addMission(adminiminfo info ,long id);
 
     public int missionToUser(adminiminfo inf, List<find_members_by_adminid> findM);
+
+    public int deleteMission(int imid);
 }
-//
+/*
+2019-12-01
+高级数据库第十六组
+办公OA系统
+何超凡、唐佳、吴鹏、赵雷
+*/
