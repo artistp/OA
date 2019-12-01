@@ -77,7 +77,7 @@ public class MissionController {
 //        if( logineduser == null)
 //            return "请登录！";
 //        long id = logineduser.getAccreditedvillageid();
-        imid = 3;
+        // imid = 3;
         int ret = adminimService.deleteMission(imid);
         if (ret == -1)
             return "信息错误！请检查输入！";
@@ -141,38 +141,14 @@ public class MissionController {
     }
 
 
-    @RequestMapping("/test")
-    @ResponseBody
-    public String test(HttpSession session)
+
+    @RequestMapping("updateRequest")
+    public String updateRequest(int imid,HttpSession session)
     {
-        /*
-        // 获取session   已登录的用户的账户session
-        userbaseinfo logineduser = (userbaseinfo)session.getAttribute("LoginedUser");
-        if( logineduser == null)
-            return null;
-
-         */
-        adminiminfo test = new adminiminfo();
-
-        test.setTitle("title");
-        test.setImcontent("IMContent");
-        test.setStime(new Date());
-        test.setEtime(new Date());
-        test.setUserid((long)6);
-        Byte imtype = 0b01;
-        test.setImtype(imtype);
-//
-
-
-        long id = 6; //logineduser.getAccreditedvillageid();
-
-        // 先发布任务
-        adminiminfo inf = adminimService.addMission(test ,id);
-        // 任务发布到队员
-        List<find_members_by_adminid> findMembersByAdminids = missionService.getmates(id);
-        adminimService.missionToUser(inf, findMembersByAdminids);
-        return "OK";
+        session.setAttribute("IMID_UPDATE",imid);
+        return "/update.html";
     }
+
 }
 /*
 2019-12-01
