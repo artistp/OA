@@ -120,7 +120,6 @@ public class AdminimService implements AdminimS {
         adminiminfoExample example = new adminiminfoExample();
         adminiminfoExample.Criteria criteria = example.createCriteria();
         criteria.andImidEqualTo(info.getImid());
-
         int ret = adminiminfoMapper.updateByExample(info,example);
         return ret;
     }
